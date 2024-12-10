@@ -14,11 +14,10 @@ class HelloWorld(AbstractLambda):
         Explain incoming event here
         """
         _LOG.info("Handling request with event: %s", event)
-        return 200
-        # return {
-        #     "statusCode": 200,
-        #     "message": "Hello from Lambda"
-        # }
+        return {
+            "statusCode": 200,
+            "message": "Hello from Lambda"
+        }
     
 
 HANDLER = HelloWorld()
