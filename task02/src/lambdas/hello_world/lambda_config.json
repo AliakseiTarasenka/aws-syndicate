@@ -17,10 +17,10 @@
     "auth_type": "NONE",
     "cors": {
       "allow_credentials": false,
-      "allow_headers": "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
-      "allow_methods": "GET",
-      "allow_origins": "*",
-      "expose_headers": "Date,X-Amz-Date",
+      "allow_headers": ["Content-Type", "X-Amz-Date", "Authorization", "X-Api-Key", "X-Amz-Security-Token"],
+      "allow_methods": ["GET"],
+      "allow_origins": ["*"],
+      "expose_headers": ["Date", "X-Amz-Date"],
       "max_age": 3600
     }
   },
