@@ -15,7 +15,7 @@ class HelloWorld(AbstractLambda):
         """
         http_method = event.get('httpMethod')
         path = event.get('path')
-        if path == {'/hello'} and http_method == 'GET':
+        if path == '/hello' and http_method == 'GET':
             return {
                 "statusCode": 200,
                 "message": "Hello from Lambda"
