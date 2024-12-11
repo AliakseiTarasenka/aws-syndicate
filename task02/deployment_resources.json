@@ -6,7 +6,9 @@
           "Action": [
             "logs:CreateLogGroup",
             "logs:CreateLogStream",
-            "logs:PutLogEvents"
+            "logs:PutLogEvents",
+            "kms:Decrypt",
+            "lambda:UpdateFunctionUrlConfig"
           ],
           "Effect": "Allow",
           "Resource": "*"
