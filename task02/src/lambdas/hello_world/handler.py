@@ -46,7 +46,9 @@ def lambda_handler(event, context):
     Returns:
         A dictionary response from handle_request method.
     """
+    print(event)
     validation_errors = HANDLER.validate_request(event)
+    print(validation_errors)
     if validation_errors:
         return {
             "statusCode": 400,
