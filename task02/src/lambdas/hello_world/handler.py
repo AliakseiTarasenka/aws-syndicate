@@ -8,16 +8,20 @@ class HelloWorld(AbstractLambda):
 
     def validate_request(self, event) -> dict:
         # Validate that necessary keys are present
-        if 'httpMethod' not in event or 'path' not in event:
-            return {"error": "Missing httpMethod or path in the event."}
+        if 'requestContext' in event and 'http' in event['requestContext']:
+            http_info = event['requestContext']['http']
+            if 'method' not in http_info or 'path' not in http_info:
+                return {"error": "Missing httpMethod or path in the event."}
+        else:
+            return {"error": "Missing requestContext or http in the event."}
         return {}
 
     def handle_request(self, event, context):
         """
         Explain incoming event here
         """
-        http_method = event['requestContext']['http']['method']
-        path = event['rawPath']
+        http_method = (event.get('requestContext', {}).get('http', {}).get('method'))
+        path = (event.get('requestContext', {}).get('http', {}).get('path'))
         _LOG.info(f"Received HTTP method: {http_method}, path: {path}")
 
         if path == '/hello' and http_method == 'GET':
@@ -48,6 +52,7 @@ def lambda_handler(event, context):
     """
     print(event)
     validation_errors = HANDLER.validate_request(event)
+    print(validation_errors)
     if validation_errors:
         return {
             "statusCode": 400,

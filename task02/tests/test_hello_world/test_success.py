@@ -5,8 +5,12 @@ class TestSuccess(HelloWorldLambdaTestCase):
 
     def test_success(self):
         event = {
-            'httpMethod': 'GET',
-            'path': '/hello'
+            'requestContext': {
+                'http': {
+                    'method': 'GET',
+                    'path': '/hello'
+                }
+            }
         }
         expected_response = {
             "statusCode": 200,
@@ -18,8 +22,12 @@ class TestSuccess(HelloWorldLambdaTestCase):
     def test_unsupported_endpoint(self):
         # Simulate a GET request to an unsupported endpoint
         event = {
-            'httpMethod': 'GET',
-            'path': '/student_id'
+            'requestContext': {
+                'http': {
+                    'method': 'GET',
+                    'path': '/student_id'
+                }
+            }
         }
         expected_response = {
             "statusCode": 400,
@@ -32,8 +40,12 @@ class TestSuccess(HelloWorldLambdaTestCase):
     def test_unsupported_method(self):
         # Simulate a POST request to the /hello endpoint
         event = {
-            'httpMethod': 'POST',
-            'path': '/hello'
+            'requestContext': {
+                'http': {
+                    'method': 'POST',
+                    'path': '/hello'
+                }
+            }
         }
         expected_response = {
             "statusCode": 400,
