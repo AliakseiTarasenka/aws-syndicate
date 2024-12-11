@@ -16,8 +16,8 @@ class HelloWorld(AbstractLambda):
         """
         Explain incoming event here
         """
-        http_method = event.get('httpMethod')
-        path = event.get('path')
+        http_method = event['requestContext']['http']['method']
+        path = event['rawPath']
         _LOG.info(f"Received HTTP method: {http_method}, path: {path}")
 
         if path == '/hello' and http_method == 'GET':
@@ -48,7 +48,6 @@ def lambda_handler(event, context):
     """
     print(event)
     validation_errors = HANDLER.validate_request(event)
-    print(validation_errors)
     if validation_errors:
         return {
             "statusCode": 400,
