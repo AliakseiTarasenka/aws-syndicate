@@ -9,7 +9,10 @@ class HelloWorld(AbstractLambda):
     def validate_request(self, event) -> dict:
         # Validate that necessary keys are present
         if 'httpMethod' not in event or 'path' not in event:
-            return {"error": "Missing httpMethod or path in the event."}
+            return {
+                "statusCode": 404,
+                "message": "Missing httpMethod or path in the event."
+            }
         return {}
 
     def handle_request(self, event, context):
