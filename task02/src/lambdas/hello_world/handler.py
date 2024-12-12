@@ -29,14 +29,15 @@ class HelloWorld(AbstractLambda):
             _LOG.info("Successful result")
             return {
                 "statusCode": 200,
-                "body": json.dumps({"message": "Hello from Lambda"})
+                "body": json.dumps({"statusCode": 200, "message": "Hello from Lambda"})
             }
         else:
             _LOG.info("API endpoint error")
             return {
                 "statusCode": 400,
-                "body": json.dumps({"message": f"Bad request syntax or unsupported method. Request path: {path}. "
-                                               f"HTTP method: {http_method}"})
+                "body": json.dumps(
+                    {"statusCode": 400, "message": f"Bad request syntax or unsupported method. Request path: {path}. "
+                                                   f"HTTP method: {http_method}"})
             }
 
 
