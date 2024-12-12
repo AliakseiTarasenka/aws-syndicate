@@ -1,5 +1,5 @@
 from tests.test_hello_world import HelloWorldLambdaTestCase
-
+import json
 
 class TestSuccess(HelloWorldLambdaTestCase):
 
@@ -14,7 +14,7 @@ class TestSuccess(HelloWorldLambdaTestCase):
         }
         expected_response = {
             "statusCode": 200,
-            "message": "Hello from Lambda"
+            "body": json.dumps({"message": "Hello from Lambda"})
         }
         actual_response = self.HANDLER.lambda_handler(event, {})
         self.assertEqual(actual_response, expected_response)
@@ -31,7 +31,8 @@ class TestSuccess(HelloWorldLambdaTestCase):
         }
         expected_response = {
             "statusCode": 400,
-            "message": "Bad request syntax or unsupported method. Request path: /student_id. HTTP method: GET"
+            "body": json.dumps({"message": f"Bad request syntax or unsupported method. Request path: /student_id. "
+                                           f"HTTP method: GET"})
         }
 
         actual_response = self.HANDLER.lambda_handler(event, {})
@@ -49,7 +50,8 @@ class TestSuccess(HelloWorldLambdaTestCase):
         }
         expected_response = {
             "statusCode": 400,
-            "message": "Bad request syntax or unsupported method. Request path: /hello. HTTP method: POST"
+            "body": json.dumps({"message": f"Bad request syntax or unsupported method. Request path: /hello. "
+                                           f"HTTP method: POST"})
         }
 
         actual_response = self.HANDLER.lambda_handler(event, {})
