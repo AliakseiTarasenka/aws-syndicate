@@ -15,6 +15,7 @@
   "alias": "${lambdas_alias_name}",
   "url_config": {
     "auth_type": "NONE",
+    "invoke_mode": "BUFFERED",
     "cors": {
       "allow_credentials": false,
       "allow_headers": ["Content-Type", "X-Amz-Date", "Authorization", "X-Api-Key", "X-Amz-Security-Token"],
