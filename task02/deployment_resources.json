@@ -8,7 +8,8 @@
             "logs:CreateLogStream",
             "logs:PutLogEvents",
             "kms:Decrypt",
-            "lambda:UpdateFunctionUrlConfig"
+            "lambda:UpdateFunctionUrlConfig",
+            "lambda:DeleteFunction"
           ],
           "Effect": "Allow",
           "Resource": "*"
