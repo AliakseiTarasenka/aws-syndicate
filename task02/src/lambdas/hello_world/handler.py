@@ -25,15 +25,10 @@ class HelloWorld(AbstractLambda):
         _LOG.info(f"Received HTTP method: {http_method}, path: {path}")
 
         if path == '/hello' and http_method == 'GET':
-            return {
-                "statusCode": 200,
-                "message": "Hello from Lambda"
-            }
+            return {"statusCode": 200, "message": "Hello from Lambda"}
         else:
-            return {
-                "statusCode": 400,
-                "message": f"Bad request syntax or unsupported method. Request path: {path}. HTTP method: {http_method}"
-            }
+            return {"statusCode": 400, "message": f"Bad request syntax or unsupported method. Request path: {path}. "
+                                                  f"HTTP method: {http_method}"}
 
 
 HANDLER = HelloWorld()
